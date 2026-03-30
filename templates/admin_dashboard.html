@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc; /* Very light bright grey */
+            margin: 0;
+            color: #1e293b;
+        }
+
+        /* --- Sidebar Upgrade --- */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background: #ffffff; /* White Sidebar for Bright Theme */
+            position: fixed;
+            left: 0;
+            top: 0;
+            border-right: 1px solid #e2e8f0;
+            padding-top: 30px;
+            z-index: 1000;
+        }
+
+        .sidebar h3 {
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: #2563eb;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            color: #64748b;
+            padding: 12px 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 5px 15px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .sidebar a:hover {
+            background: #eff6ff;
+            color: #2563eb;
+            transform: translateX(5px);
+        }
+
+        /* --- Main Content --- */
+        .main {
+            margin-left: 260px;
+            padding: 40px;
+        }
+
+        h2 {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        p.welcome-text {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        /* --- Premium Card Box --- */
+        .card-box {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            text-align: left; /* Aligned left for better readability */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-box h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .card-box .value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        /* Status Badge */
+        .status-active {
+            background: #dcfce7;
+            color: #166534;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        /* Decorative gradient bar on top of cards */
+        .card-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h3>ADMIN PANEL</h3>
+        <a href="/admin_dashboard">Dashboard</a>
+        <a href="/admin_logs">User Activity</a>
+        <a href="/manage_users">Manage Users</a>
+        <a href="/system_stats">System Analytics</a>
+        <a href="/logout" style="margin-top: 50px; color: #ef4444;">Logout</a>
+    </div>
+
+    <div class="main">
+        <h2>Admin Dashboard</h2>
+        <p class="welcome-text">Welcome back, Admin 👋. Here's what's happening today.</p>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card-box">
+                    <h4>Total Users</h4>
+                    <p class="value">{{total_users}}</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card-box">
+                    <h4>Total Searches</h4>
+                    <p class="value">{{total_search}}</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card-box">
+                    <h4>System Status</h4>
+                    <div class="mt-2">
+                        <span class="status-active">● Active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

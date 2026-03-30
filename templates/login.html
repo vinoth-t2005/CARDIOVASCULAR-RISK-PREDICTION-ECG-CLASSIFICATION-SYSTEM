@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Bright & Vibrant Palette */
+            --primary-gradient: linear-gradient(135deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+            --btn-grad: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --bg-light: #f0f4f8;
+            --glass-card: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: #1e293b;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 0;
+            position: relative;
+        }
+
+        /* --- BRIGHT ANIMATED BACKGROUND ORBS --- */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.5;
+            animation: moveOrb 20s infinite alternate ease-in-out;
+        }
+
+        .orb-1 { width: 450px; height: 450px; background: #FF9A8B; top: -100px; left: -100px; }
+        .orb-2 { width: 550px; height: 550px; background: #A18CD1; bottom: -150px; right: -150px; animation-delay: -5s; }
+        .orb-3 { width: 350px; height: 350px; background: #84fab0; top: 50%; left: 50%; animation: moveCenter 15s infinite alternate; }
+
+        @keyframes moveOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(120px, 180px) scale(1.2); }
+        }
+
+        @keyframes moveCenter {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            100% { transform: translate(-20%, -30%) scale(1.3); }
+        }
+
+        /* --- GLASS LOGIN CARD --- */
+        .login-container {
+            background: var(--glass-card);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 2px solid var(--glass-border);
+            padding: 4rem 3.5rem;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            animation: cardEntrance 0.8s ease-out;
+            position: relative;
+        }
+
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-weight: 800;
+            font-size: 2.8rem;
+            letter-spacing: -2px;
+            margin-bottom: 2.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- FORM STYLING --- */
+        form {
+            text-align: left;
+        }
+
+        label {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #475569;
+            margin-left: 5px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"], 
+        input[type="password"] {
+            width: 100%;
+            padding: 16px 22px;
+            border-radius: 18px;
+            border: 2px solid #e2e8f0;
+            background: rgba(255, 255, 255, 0.85);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            margin-bottom: 22px;
+            font-family: inherit;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 0 5px rgba(118, 75, 162, 0.15);
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
+        button {
+            width: 100%;
+            background: var(--btn-grad);
+            color: white;
+            padding: 18px;
+            border-radius: 18px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 30px rgba(118, 75, 162, 0.3);
+            margin-top: 15px;
+        }
+
+        button:hover {
+            transform: scale(1.03) translateY(-4px);
+            box-shadow: 0 20px 45px rgba(118, 75, 162, 0.45);
+        }
+
+        /* --- FOOTER & LINK --- */
+        p {
+            margin-top: 30px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        a {
+            text-decoration: none;
+            color: #764ba2;
+            font-weight: 700;
+            transition: 0.3s;
+            padding-left: 5px;
+        }
+
+        a:hover {
+            color: #FF3CAC;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="login-container">
+        <h2>User Login</h2>
+
+        <form method="POST">
+            <label>Username</label>
+            <input type="text" name="username" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>New User ? <a href="/register">Register Now</a></p>
+    </div>
+
+</body>
+</html>
